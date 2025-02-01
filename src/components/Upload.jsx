@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react"
 import { CloudLightning, Menu, X } from "lucide-react"
-import { Checkbox } from "@chakra-ui/react"
+import { Checkbox, Text, Textarea } from "@chakra-ui/react"
 
 export default function Component() {
   const [securityLevel, setSecurityLevel] = useState("low")
@@ -135,7 +135,7 @@ export default function Component() {
 
             {fileType === "file" && <FileUploadArea />}
             {fileType === "text" && <TextInputArea />}
-            {fileType === "link" && <LinkInputArea />}
+            {fileType === "link" && <TextInputArea />}
 
             {fileType === "file" && files.length > 0 && (
               <p className="text-sm md:text-base">Selected files: {files.map((file) => file.name).join(", ")}</p>
@@ -184,7 +184,7 @@ export default function Component() {
             </div>
 
             <div className="flex items-center space-x-2">
-              <Checkbox id="encrypt" />
+              <Checkbox id="encrypt" colorScheme="orange" />
               <label htmlFor="encrypt" className="font-semibold">
                 Encrypt
               </label>

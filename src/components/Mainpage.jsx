@@ -144,11 +144,13 @@ const Mainpage = () => {
             </ul>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 bg-black my-20 md:my-56 px-5 md:px-0">
-            <h1 className="text-6xl md:text-9xl mx-auto">Dash</h1>
+            <div className="flex flex-col items-center">
+              <h1 className="text-6xl md:text-9xl">Dash</h1>
+              <h5 className="text-2xl md:text-3xl mt-2">QUICK.EASY.SECURE</h5>
+            </div>
             <p className="mx-auto w-full md:w-48 my-8 md:my-auto font-medium text-center md:text-left">
               Discovered some bugs? Feel free to tell us about them at: something@email.com
             </p>
-            <h5 className="mx-auto text-2xl md:text-3xl col-span-1 md:col-span-2 mt-8 md:mt-0">QUICK.EASY.SECURE</h5>
           </div>
           <hr className="bg-[#FD914C] h-0.5 w-4/5 mx-auto border-0 mt-5"></hr>
           <div className="w-4/5 mx-auto flex flex-col md:flex-row justify-between items-center py-5">
