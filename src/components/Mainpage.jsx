@@ -1,8 +1,5 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import {
-  Card,
-  CardHeader,
-  CardBody,
   IconButton,
   Drawer,
   DrawerBody,
@@ -11,10 +8,9 @@ import {
   DrawerContent,
   DrawerCloseButton,
   useDisclosure,
-  Center,
 } from "@chakra-ui/react"
-import { CodeXml, MonitorSmartphone, Layers, ShieldHalf, UsersRound, Files, CloudLightning, Menu } from "lucide-react"
-import "../theme"
+import { CloudLightning, Menu } from "lucide-react"
+import { AnimatedCards } from "./AnimatedCards"
 
 const Mainpage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -75,8 +71,8 @@ const Mainpage = () => {
           </DrawerContent>
         </Drawer>
 
-        <div className="px-5 md:px-0">
-          <div className="font-semibold text-3xl md:text-4xl text-center mt-12 md:mt-24">QUICK. EASY. SECURE</div>
+        <div className="px-5 md:px-0 min-h-screen flex flex-col justify-center">
+          <div className="font-semibold text-4xl md:text-5xl text-center mt-12 md:mt-24">QUICK. EASY. SECURE</div>
           <p className="text-center mt-5">Need To Send Files Urgently? Seamless File Transfers At Your Fingertips</p>
           <ul className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-10 mt-10">
             <li>
@@ -88,79 +84,20 @@ const Mainpage = () => {
           </ul>
         </div>
 
-        <div className="mt-16 md:mt-32">
-          <p className="mx-auto w-4/5 md:w-2/5 text-center">
-            Dash is a platform for <span className="text-[#FD914C]">fast, secure</span> file sharing. Users can{" "}
-            <span className="text-[#FD914C]">upload</span> files and easily send them to other devices for{" "}
-            <span className="text-[#FD914C]">quick</span> downloads, ensuring{" "}
-            <span className="text-[#FD914C]">seamless</span> and <span className="text-[#FD914C]">reliable</span> file
-            transfers.
+        <AnimatedCards />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 bg-black my-20 md:my-56 px-5 md:px-0">
+          <div className="flex flex-col items-center">
+            <h1 className="text-6xl md:text-9xl">Dash</h1>
+            <h5 className="text-2xl md:text-3xl mt-2">QUICK.EASY.SECURE</h5>
+          </div>
+          <p className="mx-auto w-full md:w-48 my-8 md:my-auto font-medium text-center md:text-left">
+            Discovered some bugs? Feel free to tell us about them at: teamdash@gmail.com
           </p>
-          <div className="mt-10 px-5 md:px-0">
-            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-5 lg:gap-8 justify-center align-middle">
-              {[
-                {
-                  Icon: CodeXml,
-                  text: "Our website features a simple and secure file upload system. Users can easily share files, with data safely stored in firebase storage and managed by an Express backend.",
-                },
-                {
-                  Icon: MonitorSmartphone,
-                  text: "Our platform offers seamless file sharing across all devices, allowing you to upload and access files from smartphones, tablets or computers anytime anywhere.",
-                },
-                {
-                  Icon: Layers,
-                  text: "Our token-based system simplifies file sharing by generating a unique token for each file, allowing recipients to access it without needing an account.",
-                },
-                {
-                  Icon: ShieldHalf,
-                  text: "We prioritize security with a token system that restricts file access to authorized users only. Additionally, Firebase Storage enhances protection against breaches and unauthorized access.",
-                },
-                {
-                  Icon: UsersRound,
-                  text: "We've designed our platform for a smooth user experience by eliminating extra steps. Recipients don't need to log in or create an account to download a file - just enter a token, and the download is ready.",
-                },
-                {
-                  Icon: Files,
-                  text: "Our website stands out with secure uploads, cross-device compatability, and a token-based sharing system. It's a reliable, secure, and user-friendly solution for sharing work documents or personal files",
-                },
-              ].map(({ Icon, text }, index) => (
-                <li key={index}>
-                  <Card
-                    bg={"black"}
-                    borderWidth={2}
-                    borderColor={"#FD914C"}
-                    height={{ base: "auto", md: 350 }}
-                    width={5 / 6}
-                    className="flex justify-center ml-10"
-                    align={"center"}
-                  >
-                    <CardHeader>
-                      <Icon color="#FD914C" />
-                    </CardHeader>
-                    <CardBody textColor={"white"}>{text}</CardBody>
-                  </Card>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 bg-black my-20 md:my-56 px-5 md:px-0">
-            <div className="flex flex-col items-center">
-              <h1 className="text-6xl md:text-9xl">Dash</h1>
-              <h5 className="text-2xl md:text-3xl mt-2">QUICK.EASY.SECURE</h5>
-            </div>
-            <p className="mx-auto w-full md:w-48 my-8 md:my-auto font-medium text-center md:text-left">
-              Discovered some bugs? Feel free to tell us about them at: something@email.com
-            </p>
-          </div>
-          <hr className="bg-[#FD914C] h-0.5 w-4/5 mx-auto border-0 mt-5"></hr>
-          <div className="w-4/5 mx-auto flex flex-col md:flex-row justify-between items-center py-5">
-            <p className="mb-4 md:mb-0">Team Dash</p>
-            <p className="text-center md:text-right">
-              Chinmay Raj | Lead developer
-              <br />
-              Adarsh Sagiraju | Business Manager
-            </p>
-          </div>
+        </div>
+        <hr className="bg-[#FD914C] h-0.5 w-4/5 mx-auto border-0 mt-5"></hr>
+        <div className="w-4/5 mx-auto flex flex-col md:flex-row justify-between items-center py-5">
+          <p className="mb-4 md:mb-0"></p>
         </div>
       </div>
     </div>

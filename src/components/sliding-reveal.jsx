@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Mainpage from "./Mainpage"
-
+import BlurText from "./BlurText";
 
 export default function SlidingReveal() {
   const [showContent, setShowContent] = useState(false)
@@ -17,7 +17,7 @@ export default function SlidingReveal() {
   }, [])
 
   return (
-    <div className="relative min-h-screen w-full overflow-x-hidden bg-gray-100">
+    <div className="relative min-h-screen w-full overflow-x-hidden bg-gray-100 " style={{ fontFamily: "Poppins" }}>
       <AnimatePresence>
         {!showContent && (
           <motion.div
@@ -31,9 +31,14 @@ export default function SlidingReveal() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-4xl font-bold text-center"
+              className="text-4xl font-semibold text-center"
             >
-              Quick, easy and secure
+             <BlurText 
+             text="Quick Easy and Secure"
+             delay={200}
+             animateBy="words"
+             direction="bottom"
+             />
             </motion.h1>
           </motion.div>
         )}
