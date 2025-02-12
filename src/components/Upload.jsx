@@ -1,6 +1,8 @@
-import React, { useRef, useState } from "react"
+"use client"
+
+import { useRef, useState } from "react"
 import { CloudLightning, Menu, X } from "lucide-react"
-import { Checkbox, Text, Textarea } from "@chakra-ui/react"
+import { Checkbox } from "@chakra-ui/react"
 
 export default function Component() {
   const [securityLevel, setSecurityLevel] = useState("low")
@@ -14,7 +16,7 @@ export default function Component() {
 
   const handleFileChange = (event) => {
     const selectedFiles = Array.from(event.target.files)
-    setFiles(selectedFiles)
+    setFiles((prevFiles) => [...prevFiles, ...selectedFiles])
   }
 
   const handleDragOver = (event) => {
@@ -24,7 +26,7 @@ export default function Component() {
   const handleDrop = (event) => {
     event.preventDefault()
     const droppedFiles = Array.from(event.dataTransfer.files)
-    setFiles(droppedFiles)
+    setFiles((prevFiles) => [...prevFiles, ...droppedFiles])
   }
 
   const openFileDialog = () => {
@@ -41,69 +43,26 @@ export default function Component() {
     setLink("")
   }
 
-  const handleUpload = () => {
-    // Handle upload based on fileType
-    console.log("Uploading", fileType, files, text, link)
+  const removeFile = (index) => {
+    setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index))
   }
 
-  const FileUploadArea = () => (
-    <div
-      className="border-2 border-dashed border-gray-600 rounded-lg p-6 text-center transition-all hover:border-orange-400 cursor-pointer flex flex-col justify-center h-full"
-      onDragOver={handleDragOver}
-      onDrop={handleDrop}
-      onClick={openFileDialog}
-    >
-      <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" multiple />
-      <svg className="w-12 h-12 mx-auto mb-4 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m0-16l-4 4m4-4l4 4" />
-      </svg>
-      <p className="text-sm md:text-base">Drag a file here or click to browse</p>
-    </div>
-  )
-
-  const TextInputArea = () => (
-    <div className="border-2 border-dashed border-gray-600 rounded-lg p-6 transition-all hover:border-orange-400 h-full">
-      <textarea
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="Enter your text here"
-        className="w-full h-full bg-transparent text-white resize-none focus:outline-none"
-      />
-    </div>
-  )
-
-  const LinkInputArea = () => (
-    <div className="border-2 border-dashed border-gray-600 rounded-lg p-6 transition-all hover:border-orange-400 h-full">
-      <input
-        type="url"
-        value={link}
-        onChange={(e) => setLink(e.target.value)}
-        placeholder="Enter your link here"
-        className="w-full h-full bg-transparent text-white focus:outline-none resize:none"
-      />
-    </div>
-  )
+  const handleUpload = () => {
+    console.log("Uploading", fileType, files, text, link)
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white flex flex-col">
       <nav className="flex items-center justify-between p-4 md:p-6">
         <div className="flex items-center">
           <CloudLightning className="w-8 h-8 text-orange-400 mr-2" />
-          <span className="text-xl font-bold">Dash</span>
+          <a href="/" className="text-xl font-bold">Dash</a>
         </div>
         <div className="hidden md:flex space-x-4">
-          <a href="#" className="text-white font-medium">
-            UPLOAD
-          </a>
-          <a href="#" className="text-white font-medium">
-            DOWNLOAD
-          </a>
-          <a href="#" className="text-white font-medium">
-            WORK WITH US
-          </a>
-          <a href="#" className="text-white font-medium">
-            CONTACT US
-          </a>
+          <a href="/upload" className="text-white font-medium hover:text-orange-500">UPLOAD</a>
+          <a href="/download" className="text-white font-medium hover:text-orange-500">DOWNLOAD</a>
+          <a href="/about" className="text-white font-medium hover:text-orange-500">ABOUT US</a>
+          <a href="#" className="text-white font-medium hover:text-orange-500">CONTACT US</a>
         </div>
         <button className="md:hidden" onClick={toggleMenu}>
           {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -112,18 +71,10 @@ export default function Component() {
 
       {isMenuOpen && (
         <div className="md:hidden bg-gray-800 p-4">
-          <a href="upload" className="block py-2 text-white font-medium">
-            UPLOAD
-          </a>
-          <a href="download" className="block py-2 text-white font-medium">
-            DOWNLOAD
-          </a>
-          <a href="#" className="block py-2 text-white font-medium">
-            WORK WITH US
-          </a>
-          <a href="#" className="block py-2 text-white font-medium">
-            CONTACT US
-          </a>
+          <a href="upload" className="block py-2 text-white font-medium">UPLOAD</a>
+          <a href="download" className="block py-2 text-white font-medium">DOWNLOAD</a>
+          <a href="#" className="block py-2 text-white font-medium">WORK WITH US</a>
+          <a href="#" className="block py-2 text-white font-medium">CONTACT US</a>
         </div>
       )}
 
@@ -133,12 +84,38 @@ export default function Component() {
             <h2 className="text-2xl font-bold">Upload a file</h2>
             <p className="text-gray-400">Note: 200MB is the upload limit.</p>
 
-            {fileType === "file" && <FileUploadArea />}
-            {fileType === "text" && <TextInputArea />}
-            {fileType === "link" && <TextInputArea />}
+            {fileType === "file" && (
+              <div
+                className="border-2 border-dashed border-gray-600 rounded-lg p-6 text-center transition-all hover:border-orange-400 cursor-pointer flex flex-col justify-center h-full"
+                onDragOver={handleDragOver}
+                onDrop={handleDrop}
+                onClick={openFileDialog}
+              >
+                <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" multiple />
+                <svg className="w-12 h-12 mx-auto mb-4 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m0-16l-4 4m4-4l4 4" />
+                </svg>
+                <p className="text-sm md:text-base">Drag a file here or click to browse</p>
+              </div>
+            )}
 
-            {fileType === "file" && files.length > 0 && (
-              <p className="text-sm md:text-base">Selected files: {files.map((file) => file.name).join(", ")}</p>
+            {fileType === "text" && (
+              <textarea
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                placeholder="Enter your text here"
+                className="w-full h-full border-2 border-dashed border-gray-600 rounded-lg p-4 bg-transparent text-white resize-none focus:outline-none focus:border-orange-400"
+              />
+            )}
+
+            {fileType === "link" && (
+              <textarea
+                type="url"
+                value={link}
+                onChange={(e) => setLink(e.target.value)}
+                placeholder="Enter your link here"
+                className="w-full h-full border-2 border-dashed border-gray-600 rounded-lg p-4 bg-transparent text-white focus:outline-none resize-none focus:border-orange-400"
+              />
             )}
           </div>
 
@@ -152,9 +129,7 @@ export default function Component() {
                   <button
                     key={type}
                     className={`px-4 py-2 rounded font-semibold text-sm md:text-base ${
-                      fileType === type.toLowerCase()
-                        ? "bg-orange-400 text-white"
-                        : "border border-orange-400 text-orange-400"
+                      fileType === type.toLowerCase() ? "bg-orange-400 text-white" : "border border-orange-400 text-orange-400"
                     }`}
                     onClick={() => setFileType(type.toLowerCase())}
                   >
@@ -171,9 +146,7 @@ export default function Component() {
                   <button
                     key={level}
                     className={`px-4 py-2 rounded text-sm font-semibold md:text-base ${
-                      securityLevel === level.toLowerCase()
-                        ? "bg-orange-400 text-white"
-                        : "border border-orange-400 text-orange-400"
+                      securityLevel === level.toLowerCase() ? "bg-orange-400 text-white" : "border border-orange-400 text-orange-400"
                     }`}
                     onClick={() => setSecurityLevel(level.toLowerCase())}
                   >
@@ -185,37 +158,31 @@ export default function Component() {
 
             <div className="flex items-center space-x-2">
               <Checkbox id="encrypt" colorScheme="orange" />
-              <label htmlFor="encrypt" className="font-semibold">
-                Encrypt
-              </label>
+              <label htmlFor="encrypt" className="font-semibold">Encrypt</label>
             </div>
 
             <div className="space-y-2">
-              <p className="text-sm md:text-base">
-                Token (Want to add more files to an existing token? Add the token here, its optional) :
-              </p>
+              <p className="text-sm md:text-base">Token:</p>
               <input
                 type="text"
-                placeholder="Enter token"
                 value={token}
                 onChange={(e) => setToken(e.target.value)}
-                className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded focus:outline-none focus:border-orange-400 text-sm md:text-base"
+                className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded text-sm md:text-base focus:outline-none"
               />
-            </div>
-
-            <div className="flex justify-end space-x-4 mt-4">
-              <button
-                className="px-4 py-2 border border-orange-400 text-orange-400 rounded text-sm md:text-base"
-                onClick={clearInput}
-              >
-                Clear
-              </button>
-              <button
-                className="px-4 py-2 bg-orange-400 text-white rounded text-sm md:text-base"
-                onClick={handleUpload}
-              >
-                Upload
-              </button>
+              <div className="flex justify-end space-x-4 mt-4">
+                <button
+                  className="px-4 py-2 border border-orange-400 text-orange-400 rounded text-sm md:text-base"
+                  onClick={clearInput}
+                >
+                  Clear
+                </button>
+                <button
+                  className="px-4 py-2 bg-orange-400 text-white rounded text-sm md:text-base"
+                  onClick={handleUpload}
+                >
+                  Upload
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -223,4 +190,3 @@ export default function Component() {
     </div>
   )
 }
-

@@ -47,7 +47,7 @@ export function AnimatedCards() {
 
   return (
     <div ref={cardsRef} className="mt-10 px-5 md:px-0">
-      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-5 lg:gap-8 justify-center align-middle">
+      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-3 lg:gap-8 justify-center align-middle">
         {cardData.map(({ Icon, text }, index) => (
           <li 
             key={index} 
