@@ -1,15 +1,29 @@
 {
   "files": {
     "main.css": "/dash-frontend/static/css/main.f855e6bc.css",
-    "main.js": "/dash-frontend/static/js/main.805286ec.js",
-    "static/js/453.c66439c9.chunk.js": "/dash-frontend/static/js/453.c66439c9.chunk.js",
+    "main.js": "/dash-frontend/static/js/main.4648c5d9.js",
+    "static/js/94.12cb41b6.chunk.js": "/dash-frontend/static/js/94.12cb41b6.chunk.js",
+    "static/js/75.8d719181.chunk.js": "/dash-frontend/static/js/75.8d719181.chunk.js",
+    "static/js/866.2d3cb7b9.chunk.js": "/dash-frontend/static/js/866.2d3cb7b9.chunk.js",
+    "static/js/404.4bd342a9.chunk.js": "/dash-frontend/static/js/404.4bd342a9.chunk.js",
+    "static/js/49.8f7d89e8.chunk.js": "/dash-frontend/static/js/49.8f7d89e8.chunk.js",
+    "static/js/453.7fed030f.chunk.js": "/dash-frontend/static/js/453.7fed030f.chunk.js",
+    "static/js/629.b26c355f.chunk.js": "/dash-frontend/static/js/629.b26c355f.chunk.js",
+    "static/js/696.84032c15.chunk.js": "/dash-frontend/static/js/696.84032c15.chunk.js",
     "index.html": "/dash-frontend/index.html",
     "main.f855e6bc.css.map": "/dash-frontend/static/css/main.f855e6bc.css.map",
-    "main.805286ec.js.map": "/dash-frontend/static/js/main.805286ec.js.map",
-    "453.c66439c9.chunk.js.map": "/dash-frontend/static/js/453.c66439c9.chunk.js.map"
+    "main.4648c5d9.js.map": "/dash-frontend/static/js/main.4648c5d9.js.map",
+    "94.12cb41b6.chunk.js.map": "/dash-frontend/static/js/94.12cb41b6.chunk.js.map",
+    "75.8d719181.chunk.js.map": "/dash-frontend/static/js/75.8d719181.chunk.js.map",
+    "866.2d3cb7b9.chunk.js.map": "/dash-frontend/static/js/866.2d3cb7b9.chunk.js.map",
+    "404.4bd342a9.chunk.js.map": "/dash-frontend/static/js/404.4bd342a9.chunk.js.map",
+    "49.8f7d89e8.chunk.js.map": "/dash-frontend/static/js/49.8f7d89e8.chunk.js.map",
+    "453.7fed030f.chunk.js.map": "/dash-frontend/static/js/453.7fed030f.chunk.js.map",
+    "629.b26c355f.chunk.js.map": "/dash-frontend/static/js/629.b26c355f.chunk.js.map",
+    "696.84032c15.chunk.js.map": "/dash-frontend/static/js/696.84032c15.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f855e6bc.css",
-    "static/js/main.805286ec.js"
+    "static/js/main.4648c5d9.js"
   ]
 }
